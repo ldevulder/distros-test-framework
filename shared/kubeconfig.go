@@ -14,6 +14,10 @@ var KubeConfigFile string
 //
 // updates the global kubeconfig and returns the nodes and his data from that kubeconfig.
 func KubeConfigCluster(kubeconfig string) *Cluster {
+	// !! DEBUG !!
+	fmt.Println("\n\nEntering KubeConfigCluster!\n\n")
+	// !! DEBUG !!
+
 	localKubeConfigPath, decodeErr := decodeKubeConfig(kubeconfig)
 	if decodeErr != nil {
 		LogLevel("error", "error decoding kubeconfig %v\n", decodeErr)
@@ -23,7 +27,8 @@ func KubeConfigCluster(kubeconfig string) *Cluster {
 	// Set the global kubeconfig file path as it's not created for this flow.
 	KubeConfigFile = localKubeConfigPath
 
-	nodes, getErr := GetNodes(false)
+	//nodes, getErr := GetNodes(false)
+	nodes, getErr := GetNodes(true)
 	if getErr != nil {
 		LogLevel("error", "error getting nodes: %v\n", getErr)
 		os.Exit(1)

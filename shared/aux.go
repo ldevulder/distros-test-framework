@@ -52,6 +52,10 @@ func RunCommandOnNode(cmd, ip string) (string, error) {
 		return "", ReturnLogError("cmd should not be empty")
 	}
 
+	// !! DEBUG !!
+	fmt.Printf("\n\nIP(RunCommandOnNode): %s\n\n", ip)
+	// !! DEBUG !!
+
 	host := ip + ":22"
 	conn, err := getOrDialSSH(host)
 	if err != nil {

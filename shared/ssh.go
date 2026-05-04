@@ -165,6 +165,10 @@ func configureSSH(host string) (*ssh.Client, error) {
 		err error
 	)
 
+	// !! DEBUG !!
+	fmt.Printf("\n\nHOST(configureSSH): %s\n\n", host)
+	// !! DEBUG !!
+
 	// get access key and user from cluster config.
 	kubeConfig := os.Getenv("KUBE_CONFIG")
 	if kubeConfig == "" {
@@ -227,6 +231,10 @@ func getOrDialSSH(host string) (*ssh.Client, error) {
 	connPool.Lock()
 	conn := connPool.connClient[host]
 	connPool.Unlock()
+
+	// !! DEBUG !!
+	fmt.Printf("\n\nHOST(getOrDialSSH): %s\n\n", host)
+	// !! DEBUG !!
 
 	// if there is an existing connection, check if it's still valid.
 	// if not, remove it from the pool.
